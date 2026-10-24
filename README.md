@@ -28,7 +28,7 @@ No usa cookies ni almacenamiento del navegador.
 
 ## Publicación en GitHub Pages
 
-URL prevista: <https://ssaurexd.github.io/clipopt-web/>.
+URL pública: <https://ssaurexd.github.io/clipopt-web/>.
 
 En Settings → Pages, seleccionar **GitHub Actions**. También se puede activar
 con `gh api --method POST repos/ssaurexd/clipopt-web/pages -f build_type=workflow`
@@ -39,14 +39,26 @@ Solo `index.html`, `styles.css`, `app.js` y `assets/` se suben al artefacto;
 no se publica el repositorio entero. Todos los recursos usan rutas relativas,
 compatibles con `/clipopt-web/`. No se necesita dominio personalizado.
 
-## Descarga pendiente: activación segura
+## Descarga disponible: Clipopt 1.0.0
 
-**No hay un ZIP público firmado y notarizado confirmado.** La web lo indica
-explícitamente y no presenta un botón de descarga funcional. El enlace a
-Releases es informativo, no un enlace a un binario. No subir builds de desarrollo,
-código fuente de la app, credenciales ni certificados a este repositorio.
+La versión pública está firmada con **Developer ID Application**, con hardened
+runtime y notarización aceptada por Apple. El responsable de distribución confirmó
+la validación de firma, ticket grapado y aceptación de Gatekeeper. Es universal
+**arm64/x86_64** y requiere **macOS 14 o posterior**.
 
-Para activar una versión:
+- [Release 1.0.0](https://github.com/ssaurexd/clipopt-web/releases/tag/v1.0.0)
+- [ZIP universal](https://github.com/ssaurexd/clipopt-web/releases/download/v1.0.0/Clipopt-1.0.0-universal.zip)
+- [Archivo SHA-256](https://github.com/ssaurexd/clipopt-web/releases/download/v1.0.0/Clipopt-1.0.0-universal.zip.sha256)
+
+SHA-256 del ZIP descargado y comprobado:
+`dc80d361e7eda05eee2a670e44db7e0b171f0de21773417238db5edd85ecdda6`.
+
+Para verificarlo desde la carpeta de descarga:
+`shasum -a 256 Clipopt-1.0.0-universal.zip` y comparar con el valor anterior o
+el archivo `.sha256` publicado. No subir builds de desarrollo, código fuente de
+la app, credenciales ni certificados a este repositorio.
+
+## Publicar próximas versiones de forma segura
 
 1. Obtener la app de producción firmada con **Developer ID Application**, con
    hardened runtime y notarización aceptada por Apple. Apple Development no es
@@ -54,15 +66,15 @@ Para activar una versión:
 2. Verificar la firma (`codesign --verify --deep --strict --verbose=2 Clipopt.app`),
    el ticket (`xcrun stapler validate Clipopt.app`) y Gatekeeper
    (`spctl --assess --type execute --verbose=2 Clipopt.app`). Comprobar macOS mínimo
-   y arquitecturas del ejecutable; el objetivo es universal arm64/x86_64, **no una
-   compatibilidad publicada hasta verificar el artefacto**.
+   y arquitecturas del ejecutable; no anunciar compatibilidad sin verificar
+   el artefacto correspondiente.
 3. Probar el ZIP descargado en un Mac limpio, conservar evidencia de notarización,
    generar SHA-256 y adjuntar ZIP y checksum a una Release pública de
    `ssaurexd/clipopt-web`, con versión, requisitos y arquitecturas reales.
 4. Confirmar con el responsable de distribución la URL exacta del asset. Cambiar
-   el estado pendiente por un enlace explícito a ese ZIP, mostrando versión,
+   la descarga por un enlace explícito a ese ZIP, mostrando versión,
    requisitos, arquitecturas y checksum. Actualizar **ambos idiomas**, instalación,
-   FAQ y las pruebas que ahora exigen el estado pendiente.
+   FAQ y las pruebas que exigen la URL y versión publicadas.
 5. Comprobar respuesta HTTP del asset, instalación y permisos; desplegar y
    revisar la URL pública de Pages.
 

@@ -32,10 +32,15 @@ test("local asset and fragment links resolve under a project subpath", async () 
   assert.equal(ids.length, new Set(ids).size);
 });
 
-test("distribution is honestly pending and demo cannot access the clipboard", () => {
-  assert.match(html, /Descarga pendiente/);
-  assert.doesNotMatch(html, /href="[^"]+\.(zip|dmg)"/i);
-  assert.doesNotMatch(html, /\sdownload[=\s>]/);
+test("verified production release is linked and demo cannot access the clipboard", () => {
+  const asset = "https://github.com/ssaurexd/clipopt-web/releases/download/v1.0.0/Clipopt-1.0.0-universal.zip";
+  assert.ok(html.includes(`href="${asset}"`));
+  assert.ok(html.includes(`href="${asset}.sha256"`));
+  assert.match(html, /Descargar Clipopt 1\.0\.0/);
+  assert.match(html, /arm64/);
+  assert.match(html, /x86_64/);
+  assert.match(html, /notarizada por Apple/);
+  assert.doesNotMatch(`${html}\n${js}`, /Descarga pendiente|Download pending|será 100%|will be 100%/);
   assert.doesNotMatch(js, /navigator\.clipboard|execCommand|localStorage|sessionStorage|fetch\(/);
   assert.match(html, /datos ficticios/);
   assert.match(html, /El código de la app es privado/);

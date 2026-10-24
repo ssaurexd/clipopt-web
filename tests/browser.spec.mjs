@@ -33,16 +33,16 @@ test("demo search, all filters, favorites, keyboard and language switching", asy
   await expect(page.locator("#demo-announcement")).toContainText("Las buenas ideas");
   await page.getByRole("button", { name: "EN", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await expect(page.locator(".pending")).toHaveText("Download pending");
+  await expect(page.locator(".download-button")).toContainText("Download Clipopt 1.0.0");
   await expect(search).toHaveAttribute("placeholder", "Search your history…");
   await expect(page.getByRole("navigation")).toHaveAttribute("aria-label", "Main navigation");
   await expect(page).toHaveTitle(/Give your clipboard/);
   await page.getByRole("button", { name: "ES", exact: true }).click();
-  await expect(page.locator(".pending")).toHaveText("Descarga pendiente");
+  await expect(page.locator(".download-button")).toContainText("Descargar Clipopt 1.0.0");
   await expect(page.locator("h1")).toContainText("Tu portapapeles.");
   await page.locator("summary").first().click();
   await expect(page.locator("details").first()).toHaveAttribute("open", "");
-  await page.locator(".primary").click();
+  await page.locator(".hero .primary").click();
   await expect(page).toHaveURL(/#download$/);
   expect(errors).toEqual([]);
 });
@@ -69,12 +69,14 @@ for (const width of [320, 375, 768, 1440]) {
   }
 }
 
-test("Spanish information and honest download status work without JavaScript", async ({ browser, baseURL }) => {
+test("Spanish information and release links work without JavaScript", async ({ browser, baseURL }) => {
   const page = await browser.newPage({ javaScriptEnabled: false });
   await page.goto(baseURL);
   await expect(page.locator("h1")).toContainText("Tu portapapeles.");
-  await expect(page.locator(".pending")).toHaveText("Descarga pendiente");
-  await expect(page.locator("a[download]")).toHaveCount(0);
+  await expect(page.locator(".download-button")).toContainText("Descargar Clipopt 1.0.0");
+  const asset = "https://github.com/ssaurexd/clipopt-web/releases/download/v1.0.0/Clipopt-1.0.0-universal.zip";
+  await expect(page.locator(".download-button")).toHaveAttribute("href", asset);
+  await expect(page.locator(".checksum-link")).toHaveAttribute("href", `${asset}.sha256`);
   await page.locator("summary").first().click();
   await expect(page.locator("details").first()).toHaveAttribute("open", "");
   await page.close();

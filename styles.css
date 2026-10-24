@@ -146,7 +146,7 @@ kbd { display: inline-flex; justify-content: center; align-items: center; border
 .download-section > .eyebrow { margin: 24px 0 18px; justify-content: center; }
 .download-section h2 { font-size: 38px; }
 .download-section > p:not(.eyebrow) { max-width: 550px; margin-top: 20px; font-size: 14px; }
-.pending { background: #303248; border: 1px solid #a4addb24; color: #d5daf1; margin-top: 28px; gap: 10px; }
+.download-button { margin-top: 28px; }
 .download-section .download-meta { font-size: 11px; margin-top: 13px; color: #b3b7ce; }
 .release-link { color: #b3bfff; font-size: 12px; margin-top: 23px; }
 .site-footer { border-top: 1px solid var(--line); padding-block: 28px; display: flex; justify-content: space-between; gap: 24px; align-items: center; }
