@@ -1,7 +1,7 @@
 const english = {
   skip: "Skip to content", nav: "Main navigation", navFeatures: "Features", navPrivacy: "Privacy", navInstall: "Installation",
-  eyebrow: "Native to Mac. Truly free.", heroTitle: "Your clipboard.<br>With a little more",
-  heroAccent: "memory.", heroDescription: "That link, that idea, that image. Clipopt keeps what you copy so you can find it again without interrupting your flow.",
+  eyebrow: "Native to Mac. Truly free.", heroTitle: "Your clipboard.",
+  heroDescription: "That link, that idea, that image. Clipopt keeps what you copy so you can find it again without interrupting your flow.",
   heroCta: "Clipopt for macOS", heroMeta: "macOS 14 or later · No accounts · No subscriptions", shortcutNote: "One shortcut. Everything at hand.",
   demoTitle: "Your next great idea is right here", searchLabel: "Search the demonstration", searchPlaceholder: "Search your history…",
   filterLabel: "Filter demonstration", demoNavigate: "navigate", demoSelect: "view example", local: "● Local", floatNote: "Back to your flow.",
