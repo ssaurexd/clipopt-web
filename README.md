@@ -15,7 +15,7 @@ Desde la raíz, `python3 -m http.server 8080` permite abrir
 comprueba traducciones, enlaces locales y contrato de distribución sin paquetes.
 Para las pruebas de navegador: `npm ci`, `npx playwright install chromium` y
 `npm run test:browser`. Playwright sirve una copia bajo `/clipopt-web/` y comprueba
-interacción, teclado, ES/EN, ausencia de desbordamiento a 320/375/768/1440 px,
+interacción, teclado, ES/EN, ausencia de desbordamiento a 320/375/520/768/900/1024/1440 px,
 funcionamiento sin JavaScript y reglas WCAG A/AA con axe. Las capturas quedan en
 `test-results/`, fuera de Git. Estas herramientas solo se usan en desarrollo y CI;
 no se publican con la web. Para repetir contra producción:
@@ -25,6 +25,14 @@ Los textos iniciales están en español en `index.html`; sus equivalentes en
 inglés y los textos dinámicos de la demo están en `app.js`. El selector cambia
 también el atributo `lang`, el título, la descripción y las etiquetas accesibles.
 No usa cookies ni almacenamiento del navegador.
+
+## Diseño
+
+La web usa una dirección editorial clara: fondo marfil, titulares con tipografía
+serif del sistema, texto en tinta oscura y azul para acciones. La demo es el
+elemento principal; las funciones se organizan como una lista numerada, sin
+tarjetas flotantes ni brillos decorativos. Las fuentes siguen siendo locales.
+El encabezado se mantiene como «Tu portapapeles.» / «Your clipboard.».
 
 ## Publicación en GitHub Pages
 

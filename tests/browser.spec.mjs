@@ -30,7 +30,7 @@ test("demo search, all filters, favorites, keyboard and language switching", asy
   await page.keyboard.press("ArrowUp");
   await expect(page.locator(".clip[data-id=idea] .clip-body")).toBeFocused();
   await page.keyboard.press("Enter");
-  await expect(page.locator("#demo-announcement")).toContainText("Las buenas ideas");
+  await expect(page.locator("#demo-announcement")).toContainText("Reunión de diseño");
   await page.getByRole("button", { name: "EN", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
   await expect(page.locator("h1")).toHaveText("Your clipboard.");
@@ -48,7 +48,7 @@ test("demo search, all filters, favorites, keyboard and language switching", asy
   expect(errors).toEqual([]);
 });
 
-for (const width of [320, 375, 768, 1440]) {
+for (const width of [320, 375, 520, 768, 900, 1024, 1440]) {
   for (const language of ["es", "en"]) {
     test(`${language} at ${width}px: no overflow, accessible controls and WCAG AA`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
